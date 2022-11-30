@@ -183,8 +183,8 @@ noremap Q ZZ
 
 " IdeaVim
 noremap <leader>v <nop>
-noremap <leader>vv :source ~/.config/avim/.ideavimrc<CR>
-noremap <leader>ve      :e ~/.config/avim/.ideavimrc<CR>
+noremap <leader>vv :source ~/.config/avim/.vimrc<CR>
+noremap <leader>ve      :e ~/.config/avim/.vimrc<CR>
 map <leader>vt <Action>(VimFindActionIdAction)
 
 " Substitutions
