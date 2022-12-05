@@ -21,15 +21,13 @@ let mapleader=" "
 
 " easymotion
 " -- jump around file
-" -- although we can do more with easymotion, vim sneak is probably better
+" -- I should probably look into it more but for now it works
 " -- https://github.com/AlexPl292/IdeaVim-EasyMotion
-" Plug 'easymotion/vim-easymotion'
-" set g:EasyMotion_do_mapping=0
-" set easymotion
-" map f <Plug>(easymotion-bd-f)
-" map F <Plug>(easymotion-jumptoanywhere)
-" map t <Plug>(easymotion-bd-w)
-" map T <Plug>(easymotion-bd-W)
+Plug 'easymotion/vim-easymotion'
+set easymotion
+set g:EasyMotion_do_mapping=0
+map f <Plug>(easymotion-bd-f)
+map F <Plug>(easymotion-jumptoanywhere)
 
 " sneak
 " -- fF become filewide but with two characters
@@ -118,13 +116,13 @@ set ideajoin
 
 " relative line numbers - bad for screen sharing
 set number
-set relativenumber
+set norelativenumber
 
 " show stuff in bottom left corner instead of doing annoying ping when command fails
 set showmode
 set visualbell
 
-" Better searching (smartcase - incsearch - wrapscan)
+" Better searching (smartcase - wrapscan)
 set ignorecase
 set smartcase
 set wrapscan
@@ -133,15 +131,13 @@ set nohlsearch
 
 " virtual edit -> possible to put cursor after last character
 " paired with esc not moving cursor one to the left we have a combination that just makes sense
-" set ve=onemore
+" unfortunately a bit bugged so only partially applied
+set ve=onemore
 " inoremap <ESC> <ESC>`^
 
 " Refactor to normal mode this is essential to not losing your hair
 set idearefactormode=keep
 map <S-R> <Action>(RenameElement)
-imap <S-F6> <c-o><Action>(RenameElement)
-nmap <S-F6> <Action>(RenameElement)
-vmap <S-F6> <Action>(RenameElement)
 
 " Scrolling ((C-u C-d M H L zb zt zm))
 set scrolloff=8
