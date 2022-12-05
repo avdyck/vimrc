@@ -1,3 +1,13 @@
+" clear all previous mappings for good measure
+mapclear
+nmapclear
+vmapclear
+xmapclear
+smapclear
+omapclear
+imapclear
+cmapclear
+
 """ -----------------------------------------
 """ --------- Map leader to space -----------
 """ -----------------------------------------
@@ -11,19 +21,26 @@ let mapleader=" "
 
 " easymotion
 " -- jump around file
+" -- although we can do more with easymotion, vim sneak is probably better
 " -- https://github.com/AlexPl292/IdeaVim-EasyMotion
 " Plug 'easymotion/vim-easymotion'
 " set g:EasyMotion_do_mapping=0
+" set easymotion
 " map f <Plug>(easymotion-bd-f)
 " map F <Plug>(easymotion-jumptoanywhere)
 " map t <Plug>(easymotion-bd-w)
 " map T <Plug>(easymotion-bd-W)
 
 " sneak
-" -- sS become filewide fF but with two characters
+" -- fF become filewide but with two characters
+" -- disabled cause a bit buggy atm
 " -- https://github.com/Mishkun/ideavim-sneak#usage
-Plug 'justinmk/vim-sneak'
-vunmap S
+" Plug 'justinmk/vim-sneak'
+" set sneak
+" unmap s
+" unmap S
+" map f <Plug>(sneak-s)
+" map F <Plug>(sneak-S)
 
 " surround
 " -- visual mode S" = surround with "
@@ -41,15 +58,14 @@ Plug 'preservim/nerdtree'
 " -- https://github.com/terryma/vim-multiple-cursors/blob/master/doc/multiple_cursors.txt
 Plug 'terryma/vim-multiple-cursors'
 
-" commentary
-" -- TODO find out what it does
-" -- https://github.com/tpope/vim-commentary/blob/master/doc/commentary.txt
-" Plug 'tpope/vim-commentary'
-
 " ReplaceWithRegister
-" -- TODO find out what it does
+" -- p in normal mode becomes replace with register. e.g. piw becomes short for "_diwp
+" -- disabled for now cause other vims
 " -- https://github.com/vim-scripts/ReplaceWithRegister/blob/master/doc/ReplaceWithRegister.txt
 " Plug 'vim-scripts/ReplaceWithRegister'
+" nnoremap p <nop>
+" nmap p  <Plug>ReplaceWithRegisterOperator
+" nnoremap pp p
 
 " argtextobj
 " -- via = select argument
@@ -102,7 +118,7 @@ set ideajoin
 
 " relative line numbers - bad for screen sharing
 set number
-" set relativenumber
+set relativenumber
 
 " show stuff in bottom left corner instead of doing annoying ping when command fails
 set showmode
@@ -112,13 +128,13 @@ set visualbell
 set ignorecase
 set smartcase
 set wrapscan
-set incsearch
-set hlsearch
+set noincsearch
+set nohlsearch
 
 " virtual edit -> possible to put cursor after last character
 " paired with esc not moving cursor one to the left we have a combination that just makes sense
-set ve=onemore
-inoremap <ESC> <ESC>`^
+" set ve=onemore
+" inoremap <ESC> <ESC>`^
 
 " Refactor to normal mode this is essential to not losing your hair
 set idearefactormode=keep
@@ -129,15 +145,20 @@ vmap <S-F6> <Action>(RenameElement)
 
 " Scrolling ((C-u C-d M H L zb zt zm))
 set scrolloff=8
-noremap  <PageUp>   <c-u>zz
-inoremap <PageUp>   <c-o>5<c-u><c-o>zz
-noremap  <PageDown> 5<c-d>zz
-inoremap <PageDown> <c-o>5<c-d><c-o>zz
+noremap  <PageUp>   10k
+inoremap <PageUp>   <c-o>10k
+noremap  <c-u>      10k
+
+noremap  <PageDown> 10j
+inoremap <PageDown> <c-o>10j
+noremap  <c-d>      10j
+
+" zooming
 map zi <Action>(EditorIncreaseFontSize)
 map zo <Action>(EditorDecreaseFontSize)
 map z0 <Action>(EditorResetFontSize)
 
-" More natural copy paste (only yYdD copy | pP and <C-V> paste)
+" More natural copy paste (only yYdD copy | pP paste)
 nnoremap p "+p
 vnoremap p "+p
 nnoremap P "+P
@@ -161,7 +182,7 @@ nmap <S-Tab> <<
 vmap <Tab> <Action>(EditorIndentSelection)
 vmap <S-Tab> <Action>(EditorUnindentSelection)
 
-" Alternate moving
+" Alternate moving (methods with [] camelcase with ())
 noremap [ [m
 noremap ] ]M
 noremap ( [b
@@ -175,7 +196,13 @@ inoremap <end>  <c-o>$
 noremap H ^
 noremap L $
 
+" save and quit
 noremap Q ZZ
+
+" zoomin zoomout
+map zi <Action>(EditorIncreaseFontSize)
+map zo <Action>(EditorDecreaseFontSize)
+map zr <Action>(EditorResetFontSize)
 
 """ -----------------------------------------
 """ ----------- Leader mappings -------------
@@ -183,8 +210,8 @@ noremap Q ZZ
 
 " IdeaVim
 noremap <leader>v <nop>
-noremap <leader>vv :source ~/.config/avim/.vimrc<CR>
-noremap <leader>ve      :e ~/.config/avim/.vimrc<CR>
+noremap <leader>vv :source ~/.ideavimrc<cr>
+noremap <leader>ve :e ~/IdeaProjects/avim/.vimrc<CR>
 map <leader>vt <Action>(VimFindActionIdAction)
 
 " Substitutions
@@ -254,14 +281,14 @@ map gt <Action>(GotoTypeDeclaration)
 map ge <Action>(GotoNextError)
 
 " Git
-map gc  <Action>(Git.CompareWithBranch)
 map gf  <Action>(Git.Fetch)
-map gm  <Action>(Git.Merge)
 map gb  <Action>(Git.Branches)
+map gm  <Action>(Git.Commit.And.Push.Executor)<Action>(CheckinProject)
+map gcb <Action>(Git.CompareWithBranch)
 map gpl <Action>(Vcs.UpdateProject)
 map gps <Action>(Vcs.Push)
 map gnb <Action>(Git.CreateNewBranch)
-map gpb :!git checkout -<cr>
+map <silent> gpb :!git checkout -<cr>
 
 " Commit
 noremap <leader>c <nop>
