@@ -25,7 +25,7 @@ let mapleader=" "
 " -- https://github.com/AlexPl292/IdeaVim-EasyMotion
 Plug 'easymotion/vim-easymotion'
 set easymotion
-set g:EasyMotion_do_mapping=0
+map <leader><leader> <leader>
 map f <Plug>(easymotion-bd-f)
 map F <Plug>(easymotion-jumptoanywhere)
 
@@ -48,8 +48,9 @@ Plug 'tpope/vim-surround'
 
 " NERDTree
 " -- project pane has vim controls
+" -- laggy and weird controls... ill use arrow keys thanks
 " -- https://github.com/JetBrains/ideavim/wiki/NERDTree-support
-Plug 'preservim/nerdtree'
+" Plug 'preservim/nerdtree'
 
 " multiple-cursors
 " -- TODO find out what it does
@@ -298,12 +299,11 @@ map <leader>i <Action>(Generate)
 
 " History
 noremap <leader>h <nop>
-map <leader>hl <Action>(LocalHistory.ShowHistory)
-map <leader>hg <Action>(LocalHistory.ShowHistory)
+map <leader>h <Action>(LocalHistory.ShowHistory)
 
 " Reformatting
-map <leader>l       <Action>(ReformatCode)
-map <leader>L       <Action>(ShowReformatFileDialog)
+map <leader>l <Action>(ReformatCode)
+map <leader>L <Action>(ShowReformatFileDialog)
 
 " Toolbars
 noremap <leader>p <nop>
@@ -320,6 +320,11 @@ map <leader>pf <Action>(ActivateFindToolWindow)
 " Notifications
 map <leader><ESC> <Action>(CloseAllNotifications):noh<cr>
 
+" Reverto patronum
+noremap <leader>u <nop>
+map <leader>ul <Action>(Vcs.RollbackChangedLines)
+map <leader>ue <Action>(ChangesView.Revert)
+
 """ -----------------------------------------
 """ ---------- Control mappings -------------
 """ -----------------------------------------
@@ -331,7 +336,7 @@ sethandler a:vim
 map <c-i> <Action>(Forward)
 map <c-o> <Action>(Back)
 
-noremap <c-s> :w<cr>
+noremap <silent> <c-s> :w<cr>
 
 " window split mappings - comes standard with ideavim
 " CTRL+w s       -   Split current window horizontally
