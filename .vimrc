@@ -23,11 +23,12 @@ let mapleader=" "
 " -- jump around file
 " -- I should probably look into it more but for now it works
 " -- https://github.com/AlexPl292/IdeaVim-EasyMotion
-Plug 'easymotion/vim-easymotion'
-set easymotion
-map <leader><leader> <leader>
-map f <Plug>(easymotion-bd-f)
-map F <Plug>(easymotion-jumptoanywhere)
+" let g:EasyMotion_do_mapping=0
+" let g:EasyMotion_startofline=0
+" Plug 'easymotion/vim-easymotion'
+" set easymotion
+" map f <Plug>(easymotion-bd-f)
+" map F <Plug>(easymotion-bd-jk)
 
 " sneak
 " -- fF become filewide but with two characters
@@ -132,7 +133,7 @@ set nohlsearch
 
 " virtual edit -> possible to put cursor after last character
 " paired with esc not moving cursor one to the left we have a combination that just makes sense
-" unfortunately a bit bugged so only partially applied
+" bit bugged with multicursor & not standard vim so reverted the esc trick
 set ve=onemore
 " inoremap <ESC> <ESC>`^
 
