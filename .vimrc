@@ -292,8 +292,7 @@ map <silent> gpb :!git checkout -<cr>
 noremap <leader>c <nop>
 map <leader>cc <Action>(Git.Commit.And.Push.Executor)<Action>(CheckinProject)
 map <leader>ca <Action>(Vcs.ToggleAmendCommitMode)
-map <leader>cu <Action>(Vcs.RollbackChangedLines)
-map <leader>cr <Action>(ChangesView.Revert)
+map <leader>cu <Action>(ChangesView.Revert)
 
 " Generate
 map <leader>i <Action>(Generate)
@@ -323,8 +322,7 @@ map <leader><ESC> <Action>(CloseAllNotifications):noh<cr>
 
 " Reverto patronum
 noremap <leader>u <nop>
-map <leader>ul <Action>(Vcs.RollbackChangedLines)
-map <leader>ue <Action>(ChangesView.Revert)
+map <leader>u <Action>(Vcs.RollbackChangedLines)
 
 """ -----------------------------------------
 """ ---------- Control mappings -------------
