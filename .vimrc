@@ -1,12 +1,5 @@
 " clear all previous mappings for good measure
 mapclear
-nmapclear
-vmapclear
-xmapclear
-smapclear
-omapclear
-imapclear
-cmapclear
 
 """ -----------------------------------------
 """ --------- Map leader to space -----------
@@ -282,6 +275,7 @@ map ge <Action>(GotoNextError)
 map gf  <Action>(Git.Fetch)
 map gb  <Action>(Git.Branches)
 map gm  <Action>(Git.Commit.And.Push.Executor)<Action>(CheckinProject)
+map gr  <Action>(ExternalSystem.RefreshAllProjects)
 map gcb <Action>(Git.CompareWithBranch)
 map gpl <Action>(Vcs.UpdateProject)
 map gps <Action>(Vcs.Push)
